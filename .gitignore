@@ -1,0 +1,19 @@
+# Godot generated cache
+.godot/
+# Generated translation files
+*.translation
+# IDE configuration
+.vscode/
+.idea/
+# Local temporary files
+*.tmp
+*.bak
+*.log
+# Operating system files
+.DS_Store
+Thumbs.db
+desktop.ini
+# Build output
+build/
+builds/
+dist/

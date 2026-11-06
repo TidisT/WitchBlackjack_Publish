@@ -1,0 +1,265 @@
+[gd_scene load_steps=13 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/GameScreen.gd" id="1_screen"]
+[ext_resource type="Texture2D" path="res://assets/backgrounds/desk.png" id="2_desk"]
+[ext_resource type="FontFile" path="res://assets/fonts/Ziti.ttf" id="3_font"]
+[ext_resource type="Script" path="res://scripts/managers/GameController.gd" id="4_ctrl"]
+[ext_resource type="Script" path="res://scripts/ui/HeartDisplay.gd" id="5_heart"]
+[ext_resource type="Script" path="res://scripts/ui/ResultOverlay.gd" id="6_overlay"]
+
+[sub_resource type="StyleBoxFlat" id="sb_btn_normal"]
+bg_color = Color(0.156863, 0.156863, 0.215686, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.862745, 0.862745, 0.862745, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="sb_btn_hover"]
+bg_color = Color(0.27451, 0.27451, 0.352941, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="sb_btn_pressed"]
+bg_color = Color(0.2, 0.2, 0.27, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="sb_btn_disabled"]
+bg_color = Color(0.11, 0.11, 0.15, 0.6)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45, 0.45, 0.45, 0.6)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxEmpty" id="sb_focus"]
+
+[sub_resource type="StyleBoxFlat" id="sb_btn_over2"]
+bg_color = Color(0.156863, 0.156863, 0.215686, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.862745, 0.862745, 0.862745, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="GameScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_screen")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource("2_desk")
+expand_mode = 1
+stretch_mode = 0
+
+[node name="CardLayer" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="RoundLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 14.0
+offset_right = 220.0
+offset_bottom = 84.0
+theme_override_colors/font_color = Color(0.941176, 0.941176, 0.941176, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 54
+text = "1/10"
+
+[node name="DealerScoreLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 70.0
+offset_bottom = 110.0
+theme_override_colors/font_color = Color(0.941176, 0.941176, 0.941176, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 28
+horizontal_alignment = 1
+text = "Dealer: 0"
+
+[node name="PlayerScoreLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 430.0
+offset_bottom = 470.0
+theme_override_colors/font_color = Color(0.941176, 0.941176, 0.941176, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 28
+horizontal_alignment = 1
+text = "Player: 0"
+
+[node name="DealerDrawingLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 470.0
+offset_top = 236.0
+offset_right = 760.0
+offset_bottom = 264.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 28
+horizontal_alignment = 1
+vertical_alignment = 1
+text = "Dealer Drawing..."
+
+[node name="HeartDisplay" type="Control" parent="."]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 320.0
+offset_right = 58.0
+offset_bottom = 500.0
+mouse_filter = 2
+script = ExtResource("5_heart")
+
+[node name="HitButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 575.0
+offset_top = 205.0
+offset_right = 725.0
+offset_bottom = 265.0
+focus_mode = 0
+theme_override_colors/font_color = Color(0.823529, 0.823529, 0.823529, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_disabled_color = Color(0.55, 0.55, 0.55, 0.7)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("sb_btn_normal")
+theme_override_styles/hover = SubResource("sb_btn_hover")
+theme_override_styles/pressed = SubResource("sb_btn_pressed")
+theme_override_styles/disabled = SubResource("sb_btn_disabled")
+theme_override_styles/focus = SubResource("sb_focus")
+text = "Hit"
+
+[node name="StandButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 540.0
+offset_top = 285.0
+offset_right = 730.0
+offset_bottom = 345.0
+focus_mode = 0
+theme_override_colors/font_color = Color(0.823529, 0.823529, 0.823529, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_disabled_color = Color(0.55, 0.55, 0.55, 0.7)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("sb_btn_normal")
+theme_override_styles/hover = SubResource("sb_btn_hover")
+theme_override_styles/pressed = SubResource("sb_btn_pressed")
+theme_override_styles/disabled = SubResource("sb_btn_disabled")
+theme_override_styles/focus = SubResource("sb_focus")
+text = "Stand"
+
+[node name="ResultOverlay" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource("6_overlay")
+
+[node name="ResultLabel" type="Label" parent="ResultOverlay"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 240.0
+offset_bottom = 300.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 54
+horizontal_alignment = 1
+text = "WIN"
+
+[node name="GameOverLabel" type="Label" parent="ResultOverlay"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 190.0
+offset_bottom = 250.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 54
+horizontal_alignment = 1
+text = "YOU WIN"
+
+[node name="OneMoreButton" type="Button" parent="ResultOverlay"]
+layout_mode = 0
+offset_left = 520.0
+offset_top = 355.0
+offset_right = 720.0
+offset_bottom = 410.0
+focus_mode = 0
+theme_override_colors/font_color = Color(0.823529, 0.823529, 0.823529, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_disabled_color = Color(0.55, 0.55, 0.55, 0.7)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("sb_btn_normal")
+theme_override_styles/hover = SubResource("sb_btn_hover")
+theme_override_styles/pressed = SubResource("sb_btn_pressed")
+theme_override_styles/disabled = SubResource("sb_btn_disabled")
+theme_override_styles/focus = SubResource("sb_focus")
+text = "One More"
+
+[node name="ExitButton" type="Button" parent="ResultOverlay"]
+layout_mode = 0
+offset_left = 520.0
+offset_top = 425.0
+offset_right = 720.0
+offset_bottom = 480.0
+focus_mode = 0
+theme_override_colors/font_color = Color(0.823529, 0.823529, 0.823529, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_disabled_color = Color(0.55, 0.55, 0.55, 0.7)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("sb_btn_over2")
+theme_override_styles/hover = SubResource("sb_btn_hover")
+theme_override_styles/pressed = SubResource("sb_btn_pressed")
+theme_override_styles/disabled = SubResource("sb_btn_disabled")
+theme_override_styles/focus = SubResource("sb_focus")
+text = "Exit"
+
+[node name="GameController" type="Node" parent="."]
+script = ExtResource("4_ctrl")

@@ -1,0 +1,37 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="WitchBlackjack_Godot"
+config/description="Witch's Blackjack — Pygame to Godot 4 迁移版"
+run/main_scene="res://scenes/main/MainMenu.tscn"
+config/features=PackedStringArray("4.7")
+config/icon="res://icon.png"
+
+[autoload]
+
+_mcp_game_helper="*res://addons/godot_ai/runtime/game_helper.gd"
+
+[display]
+
+window/size/viewport_width=760
+window/size/viewport_height=540
+window/stretch/mode="canvas_items"
+window/stretch/aspect="keep"
+
+[editor_plugins]
+
+enabled=PackedStringArray("godot_ai")
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
